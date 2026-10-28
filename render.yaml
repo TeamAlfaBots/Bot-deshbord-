@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: telegram-bot-dashboard
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: BOT_TOKEN
+        sync: false          # Render dashboard mein khud daalo
+      - key: ADMIN_USER
+        value: admin
+      - key: ADMIN_PASS
+        sync: false          # Render dashboard mein khud daalo
+      - key: MONGO_URI
+        sync: false          # MongoDB Atlas connection string, Render dashboard mein daalo
+      - key: MONGO_DB
+        value: tgbot
+      - key: TAG_DELAY
+        value: "3.2"
+      - key: DB_PATH
+        value: /app/data.db
+      - key: PING_EVERY
+        value: "600"
+    # RENDER_EXTERNAL_URL Render khud set karta hai, main.py usi ko ping karta hai.
